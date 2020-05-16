@@ -63,3 +63,20 @@ Unit testing features:
 * In the case of repeating the tests individually or in groups, the result must always be the same, giving the same order in which the tests are performed, the tests are stored to be able to perform these repetitions or to be able to use them on other occasions.
 * It is an isolated code that has been created with the mission of verifying other very specific code, it does not interfere with the work of other developers.
 * Despite what many developers think, unit testing code should take no more than 5 minutes to create, they are meant to get the job done faster.
+
+# The expect() and it() functions
+Runtime errors also result in a new Error object being created and launched.
+
+Error objects are normally created with the intention of throwing them using throw. It is possible to handle the error using try catch:
+```javascript
+try {
+     throw new Error ("Something went wrong!");
+} catch (e) {
+     alert ("Well done");
+}
+```
+The it () function defines a jasmine test. It's called that because its name makes reading tests almost like reading in English.
+
+The second argument to the it () function is itself a function, which when executed will probably execute a number of _expect () functions.
+
+The expect () functions are used to actually test the things you "expect" to be true.
