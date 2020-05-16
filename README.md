@@ -80,3 +80,10 @@ The it () function defines a jasmine test. It's called that because its name mak
 The second argument to the it () function is itself a function, which when executed will probably execute a number of _expect () functions.
 
 The expect () functions are used to actually test the things you "expect" to be true.
+
+# Organizing the code to run on the web
+The term refactoring is often used to describe modifying source code without changing its behavior, which is informally known for cleaning code.
+
+Refactoring is the part of code maintenance that doesn't fix bugs or add functionality. The objective, on the contrary, is to improve the ease of understanding the code or change its structure and design and eliminate dead code, to facilitate future maintenance.
+
+Adding new behavior to a program can be difficult with the given program structure, so a developer can refactor it first to facilitate this task and then add the new behavior.
