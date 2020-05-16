@@ -54,4 +54,12 @@ Unit tests serve to:
 ## Conclusions
 Incorporating unit tests into a project is one of the best decisions you can make. You should bear in mind that the tests will not only help you reduce costs, they are created with the purpose of helping us between developers during the code creation process.
 
-Counting a test set can take time at first, but with practice it will be intuitive and fast. The concepts learned during this course will be useful to you not only for tests created using Jasmine,
+Counting a test set can take time at first, but with practice it will be intuitive and fast. The concepts learned during this course will be useful to you not only for tests created using Jasmine.
+
+# First unit test in JavaScript
+Unit testing features:
+* Although the results must be specific to each unit test developed, the results can be automated, so that we can do the tests individually or in groups.
+* Small constant process test on part of the code, but in the end, it must be verified in its entirety.
+* In the case of repeating the tests individually or in groups, the result must always be the same, giving the same order in which the tests are performed, the tests are stored to be able to perform these repetitions or to be able to use them on other occasions.
+* It is an isolated code that has been created with the mission of verifying other very specific code, it does not interfere with the work of other developers.
+* Despite what many developers think, unit testing code should take no more than 5 minutes to create, they are meant to get the job done faster.
