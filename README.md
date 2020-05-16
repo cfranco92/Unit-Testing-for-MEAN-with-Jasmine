@@ -87,3 +87,23 @@ The term refactoring is often used to describe modifying source code without cha
 Refactoring is the part of code maintenance that doesn't fix bugs or add functionality. The objective, on the contrary, is to improve the ease of understanding the code or change its structure and design and eliminate dead code, to facilitate future maintenance.
 
 Adding new behavior to a program can be difficult with the given program structure, so a developer can refactor it first to facilitate this task and then add the new behavior.
+
+# Organizing code to run using nodejs
+Node.js is an open source, cross-platform, runtime environment for the server layer (but not limited to it) based on the ECMAScript programming language
+
+It was created with the focus of being useful in creating highly scalable network programs, such as web servers.
+
+Example of a hello world of an HTTP server written in Node.js:
+```javascript
+const http = require ('http');
+
+const hostname = '127.0.0.1';
+const port = 1337;
+
+http.createServer ((req, res) => {
+   res.writeHead (200, {'Content-Type': 'text / plain'});
+   res.end ('Hello World \ n');
+}). listen (port, hostname, () => {
+   console.log (`Server running at http: // $ {hostname}: $ {port} /`);
+});
+```
