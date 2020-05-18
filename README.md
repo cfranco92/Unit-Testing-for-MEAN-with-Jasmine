@@ -118,3 +118,20 @@ For example: ESLint, JSHint, CSSComb or scsslint.
 * Typing: JavaScript is a dynamic typing language, we can change the type of variables whenever we want or need. But, we can use different tools to implement strong typing, that is, we can use variables with different types than the one we initially defined (unless we do a conversion).
 
 The most popular typing tool in JavaScript is TypeScript but there are also some alternatives like Flow and React PropTypes.
+
+# ESLint: Adding alerts to our code with ECMA Script
+ESLint is a tool that identifies and reports patterns and errors in ECMAScript / JavaScript code. It is similar to JS-Lint and JSHint with some differences:
+
+ESLint uses Espree to parse JavaScript.
+ESLint uses an AST to evaluate patterns in code.
+ESLint supports plugins, each rule is a plugin and you can add more in development.
+
+Documentation:
+```https
+https://eslint.org/docs/user-guide/configuring
+```
+
+NPM:
+```terminal
+$ npm install -g eslint
+```
