@@ -107,3 +107,14 @@ http.createServer ((req, res) => {
    console.log (`Server running at http: // $ {hostname}: $ {port} /`);
 });
 ```
+
+# Static code analysis tools
+* Linters: Alert tools. They help us to follow the rules or conventions of our teams without having to memorize the entire rule book; we just need to program and make sure these tools check our code.
+
+For example: ESLint, JSHint, CSSComb or scsslint.
+
+* Automatic correction: Tools that help us review and fix our code regardless of whether we use one code editor or another; they work for all cases and tastes of the community. For example: Prettier.
+
+* Typing: JavaScript is a dynamic typing language, we can change the type of variables whenever we want or need. But, we can use different tools to implement strong typing, that is, we can use variables with different types than the one we initially defined (unless we do a conversion).
+
+The most popular typing tool in JavaScript is TypeScript but there are also some alternatives like Flow and React PropTypes.
