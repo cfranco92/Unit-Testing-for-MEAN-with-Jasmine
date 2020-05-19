@@ -181,3 +181,12 @@ NPM:
 $ npm install -g prettier
 $ prettier --write [DOCUMENT NAME]
 ```
+
+# Typing tools
+TypeScript is a free and open source javascript programming language superset developed and maintained by Microsoft.
+
+It is a JavaScript superset, which essentially adds static typing and class-based objects.
+
+TypeScript extends JavaScript syntax, so any existing JavaScript code should work fine.
+
+It is intended for large projects, which through a TypeScript compiler are translated into original JavaScript code.
