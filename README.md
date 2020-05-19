@@ -135,3 +135,49 @@ NPM:
 ```terminal
 $ npm install -g eslint
 ```
+
+# Style correction tools
+Documentation:
+```https
+https://prettier.io/
+```
+
+Prettier is an opinionated code formatter. Apply a consistent style when parsing your code and reprinting it with your own rules that take into account the maximum line length, wrapping the code when necessary.
+
+It can be run in your editor when saving, on a pre-commit hook, or in CI environments to ensure your codebase is consistent in style without developers having to post a thorough comment on a code review.
+
+It offers support for:
+* JavaScript, including ES2017
+* JSX
+* Angular
+* Go
+* Flow
+* TypeScript
+* CSS, Less, and SCSS
+* HTML
+* JSON
+* GraphQL
+* Markdown, including GFM and MDX
+* YAML
+
+For example we have this malformed JavaScript code:
+```javascript
+foo (reallyLongArg (), omgSoManyParameters (), IShouldRefactorThis (), isThereSeriouslyAnotherOne ());
+```
+
+Passing Prettier leaves us in a more readable way:
+```javascript
+foo (
+  reallyLongArg (),
+  omgSoManyParameters (),
+  IShouldRefactorThis (),
+  isThereSeriouslyAnotherOne ()
+);
+```
+
+NPM:
+
+```terminal
+$ npm install -g prettier
+$ prettier --write [DOCUMENT NAME]
+```
