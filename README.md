@@ -190,3 +190,110 @@ It is a JavaScript superset, which essentially adds static typing and class-base
 TypeScript extends JavaScript syntax, so any existing JavaScript code should work fine.
 
 It is intended for large projects, which through a TypeScript compiler are translated into original JavaScript code.
+
+# Jasmine spyOn
+The separation of responsibilities is one of the good practices that we find in a software project. Separating responsibilities means grouping code in such a way that each set handles a specific task.
+
+Now let's talk about unit tests. When we test a component, we want to test the responsibilities that we are delegating to the component and not all the code that is executed. That is, if component A uses the b () function, what we want to test is the component's own logic and not the function's code.
+
+Let's look at the following example:
+```javascript
+function GetMonthApi () {
+  this.currentMonth = function () {
+    return 'May';
+  }
+  this.nextMonth = function () {
+    return 'June'
+  }
+}
+export function MonthCalculator () {
+  this.api = new getMonthApi ();
+  this.getNextMonth = function () {
+    return this.api.nextMonth ();
+  }
+  this.getCurrentMonth = function () {
+    return this.api.currentMonth ();
+  }
+}
+```
+The MonthCalculator class allows us to calculate the value of the current and next month. As you can see, the function getMonthApi is used inside the class. If you run the set of tests associated with our class it runs in May the value of the following month would be June, or if you run them in January the next month would be February. Do you see the problem?
+
+If we execute code that is outside the domain of a component, we can find unexpected results. That is why jasmine has a spy system (spyOn), whose main objective is to intercept the execution of a function and simulate its result.
+
+## Let's see a bit of code:
+The first method we are going to try is to get the current month **currentMonth**. If we create the test in May, the code should be:
+```javascript
+describe ('MonthCalculator', () => {
+   it ('returns the current month', () => {
+     // Arrange
+     const monthCalculator = new MonthCalculator ();
+     // act
+     const month = monthCalculator.currentMonth ();
+     // Assert
+     expect (month) .toBe ('May');
+   });
+});
+```
+This code has a problem. The **currentMonth** function will return a value that depends on the current month.
+
+As you can already imagine, the use of spies is quite useful in this case because we can control the value of the returned month.
+
+That is to say:
+```javascript
+describe ('MonthCalculator', () => {
+  it ('returns the current month', () => {
+    // Arrange
+    const monthCalculator = new MonthCalculator ();
+    const spy = spyOn (
+                 monthCalculator.api,
+                 'currentMonth'
+               ) .and.returnValue ('Cristian Month');
+    // act
+    const month = monthCalculator.currentMonth ();
+    // Assert
+    expect (month) .toBe ('Cristian Month');
+    expect (spy) .toHaveBeenCalled ();
+  });
+});
+```
+The API instance is stored in the variable this.api of our class.
+Jasmine allows us to intercept the call to our API using the spyOn function. For this, as the first parameter we must pass the object that contains the method that we are going to intercept and as the second parameter its name.
+
+Once our spy is created, in order to control the returned value we must concatenate the following: **.and.returnValue ()**.
+Finally Jasmine allows us to verify the execution of the function by means of the operator **.toHaveBeenCalled ()**.
+
+## List of questions and answers about everything you can do with spies:
+### How do you create a spy?
+```javascript
+spyOn (obj, 'method') // obj.method is a function
+```
+### How to verify that a method was called?
+```javascript
+const ref = spyOn (obj, 'method');
+expect (ref) .toHaveBeenCalled ();
+// Or directly
+expect (obj.method) .toHaveBeenCalled ()
+```
+### How to verify that a method was called with a specific parameter?
+```javascript
+const ref = spyOn (obj, 'method');
+expect (ref) .toHaveBeenCalledWith ('foo', 'bar');
+// Or directly
+expect (obj.method) .toHaveBeenCalledWith ('foo', 'bar')
+```
+### How can I check the exact number of executions of a method?
+```javascript
+expect (obj.method.callCount) .toBe (2)
+```
+### How to spy on a method without modifying its behavior?
+```javascript
+spyOn (obj, 'method'). andCallThrough ()
+```
+### How can I change the returned value by a method?
+```javascript
+spyOn (obj, 'method'). andReturn ('value')
+```
+### How can I overwrite a method?
+```javascript
+spyOn (obj, 'method'). andCallFake (() => 'this is a function');
+```
