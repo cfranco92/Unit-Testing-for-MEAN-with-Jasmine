@@ -297,3 +297,31 @@ spyOn (obj, 'method'). andReturn ('value')
 ```javascript
 spyOn (obj, 'method'). andCallFake (() => 'this is a function');
 ```
+
+# Set up a work environment to work with the jasmine framework
+Jasmin documentation:
+```https
+https://jasmine.github.io/
+```
+```https
+https://github.com/jasmine/jasmine#installation
+```
+```https
+https://github.com/jasmine/jasmine/releases
+```
+
+Jasmine is a Behavior Driven Development framework for conducting our unit tests with JavaScript.
+
+It can be run in the browser but we can also use a headless browser to better automate the tests. For example, with PhantomJS, CasperJS or ZombieJS.
+
+We also don't need a DOM; therefore, it is possible to test on any Javascript Engine like Rhino or V8 (like Node.js).
+
+## How does it work?
+Jasmine's main functions for testing are as follows:
+* **describe(a, b)** where "a" is the description of our suite and "b" the anonymous function where the entire suite or series of specifications will be included.
+* **it(a, b)** where “a” is the description of the specification and “b” the anonymous function where the expectations that the application must meet will be included.
+* **expect(a)** where "a" is a value to be tested, using string arguments (method chaining). For example: expect (true) .not.toBe (false).
+* **beforeAll(a)** where "a" will be the function that will be executed before starting the tests.
+* **afterAll(a)** where “a” will be the function that will be executed after starting the tests.
+* **beforeEach(a)** where "a" will be the function that will be executed before each test.
+* **afterEach(a)** where "a" will be the function that will be executed after each test.
