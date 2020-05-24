@@ -346,3 +346,17 @@ Run your tests
 ```
 $ npm test
 ```
+
+# First set of tests with Jasmine
+Jasmine functions with which we can experiment:
+* expect(x).toEqual(y) checks if both values are equal.
+* expect(x).toBe(y) checks if both objects are the same.
+* expect(x).toMatch(pattern) checks if the value belongs to the set pattern.
+* expect(x).toBeDefined() checks if the value is defined.
+* expect(x).toBeUndefined() checks if the value is undefined.
+* expect(x).toBeNull() checks if the value is null.
+* expect(x).toBeTruthy() checks if the value is true.
+* expect(x).toBeFalsy() check if the value is false.
+* expect(x).toContain(y) checks if the current value contains the expected one.
+* expect(x).toBeLessThan(y) checks if the current value is less than expected.
+* expect(x).toBeGreaterThan(y) checks if the current value is greater than expected.
