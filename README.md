@@ -325,3 +325,24 @@ Jasmine's main functions for testing are as follows:
 * **afterAll(a)** where “a” will be the function that will be executed after starting the tests.
 * **beforeEach(a)** where "a" will be the function that will be executed before each test.
 * **afterEach(a)** where "a" will be the function that will be executed after each test.
+
+# Configure Jasmine using Node.js
+Add Jasmine to your package.json:
+```terminal
+$ npm install --save-dev jasmine
+```
+
+Initialize Jasmine in your project:
+```terminal
+$ npx jasmine init
+```
+
+Set jasmine as your test script in your package.json
+```
+"scripts": { "test": "jasmine" }
+```
+
+Run your tests
+```
+$ npm test
+```
