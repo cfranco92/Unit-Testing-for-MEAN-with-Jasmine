@@ -360,3 +360,316 @@ Jasmine functions with which we can experiment:
 * expect(x).toContain(y) checks if the current value contains the expected one.
 * expect(x).toBeLessThan(y) checks if the current value is less than expected.
 * expect(x).toBeGreaterThan(y) checks if the current value is greater than expected.
+
+# Jasmine Dictionary:
+This reading will serve as a reference for the things you can do with Jasmine:
+
+## Creating a test set
+```javascript
+describe ("Component", () => {
+   it ("should ...", () => {
+     expect (true) .toBe (true);
+   });
+});
+```
+
+## Grouping by functionality
+```javascript
+describe ("Component", () => {
+   describe ("Functionality one", () => {
+     it ("should ...", () => {
+       expect(true).toBe (true);
+     });
+   });
+});
+```
+
+## Matchers
+```javascript
+expect(false).not.toBe(true); // negative test
+```
+
+## comparison with ===, example: 1 === 1 1! == '1'
+```javascript
+expect(thing).toBe(realThing);
+```
+
+## Value is not undefined
+```javascript
+expect(result).toBeDefined();
+```
+
+## The current value is false, example: 0, '', false
+```javascript
+expect(result).toBeFalsy();
+```
+
+## The current value is true, example: 'sd', 1, true
+```javascript
+expect(thing).toBeTruthy();
+```
+
+## The current value is greater than expected
+```javascript
+expect(result).toBeGreaterThan(3);
+```
+
+## The current value is greater than or equal to the expected
+```javascript
+expect(result).toBeGreaterThanOrEqual(25);
+```
+
+## The current value is less than expected
+```javascript
+expect(result).toBeLessThan(0);
+```
+
+## The current value is less than or equal to the expected
+```javascript
+expect(result).toBeLessThanOrEqual(123);
+```
+
+## The current value is NaN
+```javascript
+expect(thing).toBeNaN();
+```
+
+## The current value is -Infinity
+```javascript
+expect(thing).toBeNegativeInfinity();
+```
+
+## The current value is Infinity
+```javascript
+expect(thing).toBePositiveInfinity();
+```
+
+## The current value is null
+```javascript
+expect(result).toBeNull();
+```
+
+## The current value continues a string. Example:
+```javascript
+ 'Hello world'.toContain(' Hello ') // true
+['Hello', 'world'].ToContain('Hello') // true
+expect(array).toContain(anElement); 
+expect(string).toContain(substring);
+```
+
+## The current value is the same using a deep comparison
+```javascript
+expect(bigObject).toEqual({"foo": ['bar', 'baz']});
+```
+
+## The spy was called
+```javascript
+expect(mySpy).toHaveBeenCalled(); 
+expect(mySpy).not.toHaveBeenCalled();
+```
+
+## The spy was called before another
+```javascript
+expect (mySpy) .toHaveBeenCalledBefore (otherSpy);
+```
+
+## The spy was called n times:
+```javascript
+expect(mySpy).toHaveBeenCalledTimes(3);
+```
+
+## The spy was called with the following parameters
+```javascript
+expect(mySpy).toHaveBeenCalledWith('foo', 'bar', 2);
+```
+
+## Check if an element has a class
+```javascript
+const el = document.createElement ('div');
+el.className = 'foo bar baz';
+expect(el).toHaveClass('bar');
+```
+
+## The current value compared to a regular expression
+```javascript
+expect("my string").toMatch(/ string $ /);
+expect("other string").toMatch("her");
+```
+
+## Lifecycles
+```javascript
+describe("Component", () => {
+  // Shared variables
+  var foo = 0;
+beforeAll (() => {})
+  beforeEach (() => {})
+  afterEach (() => {})
+  afterAll (() => {})
+});
+```
+
+## Disabling tests
+```javascript
+xdescribe ("A spec", () => {
+  it ("waiting to be enable", function () {
+    expect (true) .toEqual (true);
+  });
+});
+describe ("A spec", () => {
+  it ("this run", () => {
+    expect (true) .toEqual (true);
+  });
+  xit ("this is skipped", () => {
+    expect (true) .toEqual (true);
+  });
+});
+```
+
+## Using spyOn
+```javascript
+describe ('A spy', () => {
+  let foo,
+    bar = null;
+  beforeEach (() => {
+    foo = {
+      setBar: value => {
+        bar = value;
+      },
+    };
+    spyOn (foo, 'setBar');
+    foo.setBar (123);
+    foo.setBar (456, 'another param');
+  });
+  it ('tracks that the spy was called', () => {
+    expect (foo.setBar) .toHaveBeenCalled ();
+  });
+  it ('tracks that the spy was called x times', () => {
+    expect (foo.setBar) .toHaveBeenCalledTimes (2);
+  });
+  it ('tracks all the arguments of its calls', () => {
+    expect (foo.setBar) .toHaveBeenCalledWith (123);
+    expect (foo.setBar) .toHaveBeenCalledWith (456, 'another param');
+  });
+});
+```
+
+## Create spy when we don't know if the function exists
+```javascript
+describe ("Create a 'bare' spy", () => {
+  let notSure;
+  beforeEach (function () {
+    notSure = jasmine.createSpy ('notSure');
+    notSure ("I", "am", "a", "spy");
+  });
+  it ("tracks that the spy was called", function () {
+    expect (notSure) .toHaveBeenCalled ();
+  });
+});
+```
+
+## Creating multiple spies on the same object
+```javascript
+describe ("Multiple spies", () => {
+  const tape;
+  beforeEach (() => {
+    tape = jasmine.createSpyObj ('tape', ['play', 'pause', 'stop']);
+    tape.play ();
+      tape.pause ();
+      tape.rewind (0);
+    });
+  it ("creates spies for each requested function", () => {
+    expect (tape.play) .toBeDefined ();
+    expect (tape.pause) .toBeDefined ();
+    expect (tape.stop) .toBeDefined ();
+  });
+});
+```
+
+## Verify a property of an object
+```javascript
+describe ("jasmine.objectContaining", () => {
+  let foo;
+  beforeEach (() => {
+    foo = {
+      a: 1,
+      b: 2,
+      bar: "baz"
+    };
+  });
+  it ("matches objects with the expect key / value pairs", () => {
+    expect (foo) .toEqual (jasmine.objectContaining ({
+      bar: "baz"
+    }));
+    expect (foo) .not.toEqual (jasmine.objectContaining ({
+      c: 37
+    }));
+  });
+});
+```
+
+## Verify a property inside an object passed as a parameter to a function
+```javascript
+describe ('jasmine.objectContaining', () => {
+  it ('is useful for comparing arguments', () => {
+    const callback = jasmine.createSpy ('callback');
+    callback ({
+      bar: 'baz',
+    });
+    expect (callback) .toHaveBeenCalledWith (
+      jasmine.objectContaining ({
+        bar: 'baz',
+      })
+    );
+  });
+});
+```
+
+## Verify a value within an array
+```javascript
+describe ("jasmine.arrayContaining", () => {
+  let foo;
+  beforeEach (function () {
+    foo = [1, 2, 3, 4];
+  });
+  it ("matches arrays with some of the values", () => {
+    expect (foo) .toEqual (jasmine.arrayContaining ([3, 1]));
+    expect (foo) .not.toEqual (jasmine.arrayContaining ([6]));
+  });
+});
+```
+
+## Verify a value within an array passed as a parameter to a function
+```javascript
+describe ('jasmine.arrayContaining', () => {
+  it ('is useful when comparing arguments', () => {
+    const callback = jasmine.createSpy ('callback');
+    callback ([1, 2, 3, 4]);
+   expect (callback)
+     .toHaveBeenCalledWith (jasmine.arrayContaining ([4, 2, 3]));
+   expect (callback)
+     .not.toHaveBeenCalledWith (jasmine.arrayContaining ([5, 2]));
+  });
+});
+```
+
+## Using regex to compare compare text strings
+```javascript
+describe ('jasmine.stringMatching', () => {
+  it ("matches as a regexp", () => {
+    expect ({foo: 'bar'})
+      .toEqual ({foo: jasmine.stringMatching (/ ^ bar $ /)});
+    expect ({foo: 'foobarbaz'})
+      .toEqual ({foo: jasmine.stringMatching ('bar')});
+  });
+   describe ("when used with a spy", () => {
+    it ("comparing arguments", () => {
+      const callback = jasmine.createSpy ('callback');
+      callback ('foobarbaz');
+      expect (callback)
+        .toHaveBeenCalledWith (jasmine.stringMatching ('bar'));
+      expect (callback)
+        .not.toHaveBeenCalledWith (jasmine.stringMatching (/ ^ bar $ /));
+    });
+  });
+});
+```
