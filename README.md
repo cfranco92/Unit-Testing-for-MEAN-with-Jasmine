@@ -366,19 +366,19 @@ This reading will serve as a reference for the things you can do with Jasmine:
 
 ## Creating a test set
 ```javascript
-describe ("Component", () => {
+describe("Component", () => {
    it ("should ...", () => {
-     expect (true) .toBe (true);
+     expect(true).toBe(true);
    });
 });
 ```
 
 ## Grouping by functionality
 ```javascript
-describe ("Component", () => {
-   describe ("Functionality one", () => {
+describe("Component", () => {
+   describe("Functionality one", () => {
      it ("should ...", () => {
-       expect(true).toBe (true);
+       expect(true).toBe(true);
      });
    });
 });
@@ -501,106 +501,106 @@ expect("other string").toMatch("her");
 describe("Component", () => {
   // Shared variables
   var foo = 0;
-beforeAll (() => {})
-  beforeEach (() => {})
-  afterEach (() => {})
-  afterAll (() => {})
+beforeAll(() => {})
+  beforeEach(() => {})
+  afterEach(() => {})
+  afterAll(() => {})
 });
 ```
 
 ## Disabling tests
 ```javascript
-xdescribe ("A spec", () => {
-  it ("waiting to be enable", function () {
-    expect (true) .toEqual (true);
+xdescribe("A spec", () => {
+  it("waiting to be enable", function () {
+    expect(true).toEqual(true);
   });
 });
-describe ("A spec", () => {
-  it ("this run", () => {
-    expect (true) .toEqual (true);
+describe("A spec", () => {
+  it("this run", () => {
+    expect(true).toEqual(true);
   });
-  xit ("this is skipped", () => {
-    expect (true) .toEqual (true);
+  xit("this is skipped", () => {
+    expect(true).toEqual(true);
   });
 });
 ```
 
 ## Using spyOn
 ```javascript
-describe ('A spy', () => {
+describe('A spy', () => {
   let foo,
     bar = null;
-  beforeEach (() => {
+  beforeEach(() => {
     foo = {
       setBar: value => {
         bar = value;
       },
     };
-    spyOn (foo, 'setBar');
-    foo.setBar (123);
-    foo.setBar (456, 'another param');
+    spyOn(foo, 'setBar');
+    foo.setBar(123);
+    foo.setBar(456, 'another param');
   });
-  it ('tracks that the spy was called', () => {
-    expect (foo.setBar) .toHaveBeenCalled ();
+  it('tracks that the spy was called', () => {
+    expect(foo.setBar).toHaveBeenCalled();
   });
-  it ('tracks that the spy was called x times', () => {
-    expect (foo.setBar) .toHaveBeenCalledTimes (2);
+  it('tracks that the spy was called x times', () => {
+    expect(foo.setBar).toHaveBeenCalledTimes(2);
   });
-  it ('tracks all the arguments of its calls', () => {
-    expect (foo.setBar) .toHaveBeenCalledWith (123);
-    expect (foo.setBar) .toHaveBeenCalledWith (456, 'another param');
+  it('tracks all the arguments of its calls', () => {
+    expect(foo.setBar).toHaveBeenCalledWith(123);
+    expect(foo.setBar).toHaveBeenCalledWith(456, 'another param');
   });
 });
 ```
 
 ## Create spy when we don't know if the function exists
 ```javascript
-describe ("Create a 'bare' spy", () => {
+describe("Create a 'bare' spy", () => {
   let notSure;
-  beforeEach (function () {
-    notSure = jasmine.createSpy ('notSure');
-    notSure ("I", "am", "a", "spy");
+  beforeEach(function () {
+    notSure = jasmine.createSpy('notSure');
+    notSure("I", "am", "a", "spy");
   });
-  it ("tracks that the spy was called", function () {
-    expect (notSure) .toHaveBeenCalled ();
+  it("tracks that the spy was called", function () {
+    expect(notSure).toHaveBeenCalled();
   });
 });
 ```
 
 ## Creating multiple spies on the same object
 ```javascript
-describe ("Multiple spies", () => {
+describe("Multiple spies", () => {
   const tape;
-  beforeEach (() => {
-    tape = jasmine.createSpyObj ('tape', ['play', 'pause', 'stop']);
-    tape.play ();
-      tape.pause ();
-      tape.rewind (0);
+  beforeEach(() => {
+    tape = jasmine.createSpyObj('tape', ['play', 'pause', 'stop']);
+    tape.play();
+      tape.pause();
+      tape.rewind(0);
     });
-  it ("creates spies for each requested function", () => {
-    expect (tape.play) .toBeDefined ();
-    expect (tape.pause) .toBeDefined ();
-    expect (tape.stop) .toBeDefined ();
+  it("creates spies for each requested function", () => {
+    expect(tape.play).toBeDefined();
+    expect(tape.pause).toBeDefined();
+    expect(tape.stop).toBeDefined();
   });
 });
 ```
 
 ## Verify a property of an object
 ```javascript
-describe ("jasmine.objectContaining", () => {
+describe("jasmine.objectContaining", () => {
   let foo;
-  beforeEach (() => {
+  beforeEach(() => {
     foo = {
       a: 1,
       b: 2,
       bar: "baz"
     };
   });
-  it ("matches objects with the expect key / value pairs", () => {
-    expect (foo) .toEqual (jasmine.objectContaining ({
+  it("matches objects with the expect key / value pairs", () => {
+    expect(foo).toEqual(jasmine.objectContaining({
       bar: "baz"
     }));
-    expect (foo) .not.toEqual (jasmine.objectContaining ({
+    expect(foo).not.toEqual(jasmine.objectContaining({
       c: 37
     }));
   });
@@ -609,14 +609,14 @@ describe ("jasmine.objectContaining", () => {
 
 ## Verify a property inside an object passed as a parameter to a function
 ```javascript
-describe ('jasmine.objectContaining', () => {
-  it ('is useful for comparing arguments', () => {
-    const callback = jasmine.createSpy ('callback');
-    callback ({
+describe('jasmine.objectContaining', () => {
+  it('is useful for comparing arguments', () => {
+    const callback = jasmine.createSpy('callback');
+    callback({
       bar: 'baz',
     });
-    expect (callback) .toHaveBeenCalledWith (
-      jasmine.objectContaining ({
+    expect(callback).toHaveBeenCalledWith(
+      jasmine.objectContaining({
         bar: 'baz',
       })
     );
@@ -626,50 +626,49 @@ describe ('jasmine.objectContaining', () => {
 
 ## Verify a value within an array
 ```javascript
-describe ("jasmine.arrayContaining", () => {
+describe("jasmine.arrayContaining", () => {
   let foo;
-  beforeEach (function () {
+  beforeEach(function () {
     foo = [1, 2, 3, 4];
   });
-  it ("matches arrays with some of the values", () => {
-    expect (foo) .toEqual (jasmine.arrayContaining ([3, 1]));
-    expect (foo) .not.toEqual (jasmine.arrayContaining ([6]));
+  it("matches arrays with some of the values", () => {
+    expect(foo).toEqual(jasmine.arrayContaining([3, 1]));
+    expect(foo).not.toEqual(jasmine.arrayContaining([6]));
   });
 });
 ```
 
 ## Verify a value within an array passed as a parameter to a function
 ```javascript
-describe ('jasmine.arrayContaining', () => {
-  it ('is useful when comparing arguments', () => {
-    const callback = jasmine.createSpy ('callback');
-    callback ([1, 2, 3, 4]);
-   expect (callback)
-     .toHaveBeenCalledWith (jasmine.arrayContaining ([4, 2, 3]));
-   expect (callback)
-     .not.toHaveBeenCalledWith (jasmine.arrayContaining ([5, 2]));
+describe('jasmine.arrayContaining', () => {
+  it('is useful when comparing arguments', () => {
+    const callback = jasmine.createSpy('callback');
+    callback([1, 2, 3, 4]);
+   expect(callback).toHaveBeenCalledWith(jasmine.arrayContaining ([4, 2, 3]));
+   expect(callback).not.toHaveBeenCalledWith (jasmine.arrayContaining ([5, 2]));
   });
 });
 ```
 
 ## Using regex to compare compare text strings
 ```javascript
-describe ('jasmine.stringMatching', () => {
-  it ("matches as a regexp", () => {
-    expect ({foo: 'bar'})
-      .toEqual ({foo: jasmine.stringMatching (/ ^ bar $ /)});
-    expect ({foo: 'foobarbaz'})
-      .toEqual ({foo: jasmine.stringMatching ('bar')});
+describe('jasmine.stringMatching', () => {
+  it("matches as a regexp", () => {
+    expect({foo: 'bar'}).toEqual ({foo: jasmine.stringMatching (/ ^ bar $ /)});
+    expect({foo: 'foobarbaz'}).toEqual({foo: jasmine.stringMatching ('bar')});
   });
-   describe ("when used with a spy", () => {
-    it ("comparing arguments", () => {
+   describe("when used with a spy", () => {
+    it("comparing arguments", () => {
       const callback = jasmine.createSpy ('callback');
-      callback ('foobarbaz');
-      expect (callback)
-        .toHaveBeenCalledWith (jasmine.stringMatching ('bar'));
-      expect (callback)
-        .not.toHaveBeenCalledWith (jasmine.stringMatching (/ ^ bar $ /));
+      callback('foobarbaz');
+      expect(callback).toHaveBeenCalledWith(jasmine.stringMatching ('bar'));
+      expect(callback).not.toHaveBeenCalledWith(jasmine.stringMatching (/ ^ bar $ /));
     });
   });
 });
 ```
+
+# Introduction to the server-side testing module
+We are going to create the unit tests of an application built with the MEAN Stack: Node.js and Express.js in the backend, MongoDB as the database and Angular (with TypeScript) in the frontend.
+
+We are going to test the interaction of the frontend (Angular) with the server or with the clients and how the server interacts with the framework that makes the queries to the database and with the client that makes the requests. We are NOT going to test the database directly.
